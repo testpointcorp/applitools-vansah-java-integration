@@ -3,7 +3,7 @@ This tutorial guides you through the process of integrating Applitools with Vans
 
 By following this setup, you can streamline your testing workflow, ensuring that test outcomes are recorded directly in your Jira workspace.
 ## Prerequisites
-- Applitools - [Applitools](https://applitools.com/) project is already setup.
+- Applitools - [Applitools](https://applitools.com/) project is already set up with the API token properly configured in the environment variables.
 - Vansah Binding - Download VansahNode.java file from this repo [`VansahNode.java`](https://github.com/testpointcorp/Vansah-API-Binding-Java/blob/prod/src/main/java/com/vansah/VansahNode.java).
 - Make sure that [`Vansah`](https://marketplace.atlassian.com/apps/1224250/vansah-test-management-for-jira?tab=overview&hosting=cloud) is installed in your Jira workspace
 - You need to Generate **Vansah** [`connect`](https://docs.vansah.com/docs-base/generate-a-vansah-api-token-from-jira-cloud/) token to authenticate with Vansah APIs.
