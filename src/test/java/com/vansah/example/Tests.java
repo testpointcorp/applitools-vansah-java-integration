@@ -35,12 +35,15 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Tests {
 
-	//Vansah constants
-	private String testCaseKey;
-	private String jiraIssueKey = "TEST-5";
-	private String testSprint = "TEST Sprint 1";
-	private int result = 2;
-	private VansahNode vansahTest;
+	private String testCaseKey; // Mandatory: Vansah Test Case Key
+	// Mandatory: Provide Issue Key or Test Folder ID to which the Test Case is associated
+	private String jiraIssueKey = "TEST-5"; 
+	private String testedSprint = "TEST Sprint 1"; // The sprint during which the test was conducted
+	private String testedEnv = "UAT";    // The environment in which the test was conducted
+	private String testedVersion = "Version 0.0.1"; // The version of the software tested
+
+	private int result = 2; // Default value `2`: "passed"
+	private VansahNode vansahTest; // VansahNode object to manage test details
 
 	// Test control inputs to read once and share for all tests
 	private static String applitoolsApiKey;
@@ -58,10 +61,22 @@ public class Tests {
 	public void setupBeforeEachTest() throws MalformedURLException {
 
 		// Set up Vansah Test Variables
-		vansahTest = new VansahNode();
+		vansahTest = new VansahNode(); // Initialize a new VansahNode object
+
+		// Set the Vansah token using an environment variable
 		vansahTest.setVansahToken(System.getenv("VANSAH_TOKEN"));
+
+		// Set the JIRA issue key to associate the test case with the appropriate issue
 		vansahTest.setJIRA_ISSUE_KEY(jiraIssueKey);
-		vansahTest.setSPRINT_NAME(testSprint);
+
+		// Set the sprint name to indicate which sprint the test is part of
+		vansahTest.setSPRINT_NAME(testedSprint);
+
+		// Set the environment name to specify the environment in which the test is executed
+		vansahTest.setENVIRONMENT_NAME(testedEnv);
+
+		// Set the release name to denote the version of the software being tested
+		vansahTest.setRELEASE_NAME(testedVersion);
 
 		// Read the Applitools API key from an environment variable.
 		applitoolsApiKey = System.getenv("APPLITOOLS_API_KEY");
@@ -71,7 +86,7 @@ public class Tests {
 
 		// Create a new batch for tests.
 		String runnerName = "Classic runner";
-		batch = new BatchInfo("UAT Regression Testin on : " + runnerName);
+		batch = new BatchInfo("UAT Regression Testing on : " + runnerName);
 
 		// Create a configuration for Applitools Eyes.
 		config = new Configuration();
@@ -89,14 +104,14 @@ public class Tests {
 		// Create ChromeDriver options
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
+	    options.addArguments("--headless"); // Enable headless mode
+	    options.addArguments("--disable-gpu"); // Applicable to Windows OS
 
 		// Open the browser with a local ChromeDriver instance.
 		driver = new ChromeDriver(options);
 
 
 		// Set an implicit wait of 10 seconds.
-		// For larger projects, use explicit waits for better control.
-		// https://www.selenium.dev/documentation/webdriver/waits/
 		// The following call works for Selenium 4:
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -149,20 +164,27 @@ public class Tests {
 	@AfterMethod
 	public void cleanUpAfterEachTest() throws Exception {
 
-		// Close Eyes to tell the server it should display the results.
-		eyes.closeAsync();
+	    // Close Eyes to tell the server it should display the results.
+	    eyes.closeAsync();
 
-		// Quit the WebDriver instance.
-		driver.quit();
-		try {
-			TestResultsSummary allTestResults = runner.getAllTestResults();
-			System.out.println(allTestResults);}
-		catch(DiffsFoundException e) {
-			result = 1;
-			System.out.println(e.getMessage());
-		}finally {
-			vansahTest.addQuickTestFromJiraIssue(testCaseKey, result);
-		}
+	    // Quit the WebDriver instance.
+	    driver.quit();
+	    try {
+	        // Get all test results from the runner and print them.
+	        TestResultsSummary allTestResults = runner.getAllTestResults();
+	        System.out.println(allTestResults);
+	    } catch (Exception e) {
+	        // If any exception occurs, set the result to "failed" (1) and print the error message.
+	        result = 1;
+	        System.out.println(e.getMessage());
+	    } catch (DiffsFoundException e) {
+	        // If differences are found, set the result to "failed" (1) and print the error message.
+	        result = 1;
+	        System.out.println(e.getMessage());
+	    } finally {
+	        // Add the test result to Vansah from Jira Issue with the specified testCaseKey and result.
+	        vansahTest.addQuickTestFromJiraIssue(testCaseKey, result);
+	    }
 	}
 
 }
