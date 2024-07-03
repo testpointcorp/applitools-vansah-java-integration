@@ -1,7 +1,6 @@
 # Applitools Integration with Vansah Test Management For Jira
-This tutorial guides you through the process of integrating Applitools with Vansah Test Management for Jira using Java to automatically send your test case results.
+Follow fhe instructions below to integrate Applitools with Vansah Test Management for Jira using Java. The integration will allow you to send your test case results to Vansab
 
-By following this setup, you can streamline your testing workflow, ensuring that test outcomes are recorded directly in your Jira workspace.
 ## Prerequisites
 - Applitools - [Applitools](https://applitools.com/) project is already set up with the API token properly configured in the environment variables.
 - Vansah Binding - Download VansahNode.java file from this repo [`VansahNode.java`](https://github.com/testpointcorp/Vansah-API-Binding-Java/blob/prod/src/main/java/com/vansah/VansahNode.java).
@@ -109,7 +108,7 @@ To enable Vansah Integration in Applitools project, follow these steps:
 	}
     ```
 
-### Conclusion
+### 
 By following the above steps, your Applitools project will be equipped to send test run results directly to Vansah, streamlining your testing and reporting process.
 
 Ensure that all files are placed and configured as described to facilitate successful integration.
