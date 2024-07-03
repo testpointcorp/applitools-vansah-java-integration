@@ -1,5 +1,5 @@
 # Applitools Integration with Vansah Test Management For Jira
-This tutorial guides you through the process of integrating Applitools with Vansah Test Management for Jira to automatically send your test case results.
+This tutorial guides you through the process of integrating Applitools with Vansah Test Management for Jira using Java to automatically send your test case results.
 
 By following this setup, you can streamline your testing workflow, ensuring that test outcomes are recorded directly in your Jira workspace.
 ## Prerequisites
@@ -95,6 +95,18 @@ To enable Vansah Integration in Applitools project, follow these steps:
             vansahTest.addQuickTestFromJiraIssue(testCaseKey, result);
         }
     }
+    ```
+5. Add Test Case Key value to each of your Test
+    ```java
+    @Test()
+	public void landingPage() {
+
+		//Vansah Test Case Key
+		testCaseKey = "TEST-C8";
+		/**
+		 Your Test logic
+		**/
+	}
     ```
 
 ### Conclusion
