@@ -1,5 +1,5 @@
 # Applitools Integration with Vansah Test Management For Jira
-Follow fhe instructions below to integrate Applitools with Vansah Test Management for Jira using Java. The integration will allow you to send your test case results to Vansab
+Follow the instructions below to integrate [Applitools](https://applitools.com/) with Vansah Test Management for Jira using Java. The integration will allow you to send your test case results to Vansab
 
 ## Prerequisites
 - Applitools - [Applitools](https://applitools.com/) project is already set up with the API token properly configured in the environment variables.
