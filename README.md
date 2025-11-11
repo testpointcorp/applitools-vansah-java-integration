@@ -7,7 +7,7 @@ Follow the instructions below to integrate [Applitools](https://applitools.com/)
 	
 - Vansah Binding - Download VansahNode.java file from this repo [`VansahNode.java`](https://github.com/testpointcorp/Vansah-API-Binding-Java/blob/prod/src/main/java/com/vansah/VansahNode.java).
 - Make sure that [`Vansah`](https://marketplace.atlassian.com/apps/1224250/vansah-test-management-for-jira?tab=overview&hosting=cloud) is installed in your Jira workspace
-- You need to Generate  [`Vansah connect`](https://docs.vansah.com/docs-base/generate-a-vansah-api-token-from-jira-cloud/) token to authenticate with Vansah APIs.
+- You need to Generate  [`Vansah connect`](https://help.vansah.com/en/articles/9824979-generate-a-vansah-api-token-from-jira) token to authenticate with Vansah APIs.
 
 ## Configuration
 **Setting Environment Variables** - Store your Vansah API token as an environment variable for security. 
